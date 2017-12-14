@@ -133,7 +133,8 @@ class accountsController extends http\controller
                 $_SESSION["userID"] = $user->id;
 
                 //forward the user to the show all todos page
-                print_r($_SESSION);
+                //print_r($_SESSION);
+                header("Location: index.php?page=tasks&action=all"); //goes to the tasks page
             } else {
                 echo 'password does not match';
             }
