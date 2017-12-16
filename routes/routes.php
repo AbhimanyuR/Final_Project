@@ -162,6 +162,14 @@ class routes
         $route->method = 'newTodoform';
         $routes[] = $route;
 
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'save';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'save';
+        $routes[] = $route;
+
         return $routes;
     }
 
