@@ -19,13 +19,11 @@
 
 
 <form action="index.php?page=todos&action=register" method="post">
-    First name: <input type="text" name="fname"><br>
-    Last name: <input type="text" name="lname"><br>
-    Email: <input type="text" name="email"><br>
-    Phone: <input type="text" name="phone"><br>
-    Birthday: <input type="text" name="birthday"><br>
-    Gender: <input type="text" name="gender"><br>
-    Password: <input type="password" name="password"><br>
+    Owner Email: <input type="text" name="owneremail" value="<?php echo $data->owneremail; ?>"> <br>
+    Due Date: <input type="text" name="duedate" value="<?php echo $data->duedate; ?>"><br>
+    Message: <input type="text" name="message" value="<?php  echo $data->message; ?>"><br>
+    Is Done?: <input type="text" name="isdone" value="<?php echo $data->isdone; ?>"><br>
+
     <input type="submit" value="Submit form">
 </form>
 
