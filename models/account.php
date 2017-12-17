@@ -20,24 +20,19 @@ final class account extends \database\model
     }
 
 
-    //to find a users tasks you need to create a method here.  Use $this->id to get the usersID For the query
     public static function findTasks()
     {
 
-        //I am temporarily putting a findall here but you should add a method to todos that takes the USER ID and returns their tasks.
         $records = todos::findAll();
         print_r($records);
         return $records;
     }
-    //add a method to compare the passwords this is where bcrypt should be done and it should return TRUE / FALSE for login
-
 
 
     public function setPassword($password) {
 
         $password = password_hash($password, PASSWORD_DEFAULT);
-
-
+        
         return $password;
 
     }
@@ -52,15 +47,35 @@ final class account extends \database\model
 
     public function validate()
     {
+
         $valid = TRUE;
-        echo 'myemail: ' . $this->email;
-        if($this->email == '') {
+        $validationErrors = array();
+        if (isset($this->email) && ($this->email == '' || !filter_var($this->email, FILTER_VALIDATE_EMAIL)) ) {
             $valid = FALSE;
-            echo 'nothing in email';
+            $validationErrors[] = 'Please enter a valid Email';
+        }
+
+        if (isset($this->fname) && $this->fname == '' ) {
+            $valid = FALSE;
+            $validationErrors[] = 'Please enter first name';
+        }
+        if (isset($this->lname) && $this->lname == '' ) {
+            $valid = FALSE;
+            $validationErrors[] = 'Please enter Last name';
+        }
+
+        if (isset($this->password) && ($this->password == '' || (strlen($this->password) < 6)) ) {
+            $valid = FALSE;
+            $validationErrors[] = 'Password should be at least 6 character long';
         }
 
 
-        return $valid;
+
+        if($valid) {
+            return FALSE;
+        }else{
+            return $validationErrors;
+        }
 
     }
 
