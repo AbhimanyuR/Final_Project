@@ -9,10 +9,6 @@ abstract class model
     public function save()
     {
 
-        if($this->validate() == FALSE) {
-            echo 'failed validation';
-            exit;
-        }
         $INSERT = FALSE;
 
         if ($this->id != '') {
@@ -45,7 +41,7 @@ abstract class model
         }
 
 
-
+        
     }
 
 
@@ -57,7 +53,6 @@ abstract class model
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         unset($array['id']);
-        // var_dump($array);
         $columnString = implode(',', array_flip($array));
         $valueString = ':' . implode(',:', array_flip($array));
         $sql = 'INSERT INTO ' . $tableName . ' (' . $columnString . ') VALUES (' . $valueString . ')';
@@ -78,8 +73,7 @@ abstract class model
 
         $comma = " ";
         $sql = 'UPDATE ' . $tableName . ' SET ';
-        // var_dump($array);
-        // echo empty($array['isdone']);
+
         foreach ($array as $key => $value) {
             if (strlen($value)) {
                 $sql .= $comma . $key . ' = "' . $value . '"';
@@ -87,7 +81,6 @@ abstract class model
             }
         }
         $sql .= ' WHERE id=' . $this->id;
-        // var_dump($sql);
         return $sql;
 
     }
