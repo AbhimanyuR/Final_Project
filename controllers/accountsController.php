@@ -12,11 +12,18 @@ class accountsController extends http\controller
 {
 
     //each method in the controller is named an action.
-    //to call the show function the url is index.php?page=task&action=show
+    //to call the show function the url is index.php?page=account&action=show
     public static function show()
     {
-        $record = accounts::findOne($_REQUEST['id']);
-        self::getTemplate('show_account', $record);
+
+        session_start();
+        if(key_exists('userID',$_SESSION)) {
+            $userID = $_SESSION['userID'];
+            $record = accounts::findOne($userID);
+            self::getTemplate('show_account', $record);
+        } else {
+            echo 'you must be logged in to view accounts';
+        }
     }
 
     //to call the show function the url is index.php?page=accounts&action=all
@@ -28,8 +35,7 @@ class accountsController extends http\controller
         self::getTemplate('all_accounts', $records);
 
     }
-    //to call the show function the url is called with a post to: index.php?page=task&action=create
-    //this is a function to create new tasks
+
 
     //you should check the notes on the project posted in moodle for how to use active record here
 
@@ -66,12 +72,12 @@ class accountsController extends http\controller
             //you may want to send the person to a
             // login page or create a session and log them in
             // and then send them to the task list page and a link to create tasks
-            header("Location: index.php?page=accounts&action=all");
+            header("Location: index.php?page=tasks&action=all");
 
         } else {
             //You can make a template for errors called error.php
             // and load the template here with the error you want to show.
-           // echo 'already registered';
+            // echo 'already registered';
             $error = 'already registered';
             self::getTemplate('error', $error);
 
@@ -81,14 +87,24 @@ class accountsController extends http\controller
 
     public static function edit()
     {
-        $record = accounts::findOne($_REQUEST['id']);
 
-        self::getTemplate('edit_account', $record);
+
+        session_start();
+        if(key_exists('userID',$_SESSION)) {
+            $userID = $_SESSION['userID'];
+            $record = accounts::findOne($userID);
+            self::getTemplate('edit_account', $record);
+        } else {
+            echo 'you must be logged in to edit';
+        }
+
 
     }
 //this is used to save the update form data
     public static function save() {
-        $user = accounts::findOne($_REQUEST['id']);
+        session_start();
+        $userID = $_SESSION['userID'];
+        $user = accounts::findOne($userID);
 
         $user->email = $_POST['email'];
         $user->fname = $_POST['fname'];
@@ -97,7 +113,7 @@ class accountsController extends http\controller
         $user->birthday = $_POST['birthday'];
         $user->gender = $_POST['gender'];
         $user->save();
-        header("Location: index.php?page=accounts&action=all");
+        header("Location: index.php?page=accounts&action=show");
 
     }
 
@@ -106,6 +122,11 @@ class accountsController extends http\controller
         $record = accounts::findOne($_REQUEST['id']);
         $record->delete();
         header("Location: index.php?page=accounts&action=all");
+    }
+    public static function logout() {
+        session_start();
+        session_destroy();
+        header("Location: index.php?page=accounts&action=login");
     }
 
     //this is to login, here is where you find the account and allow login or deny.
@@ -133,8 +154,13 @@ class accountsController extends http\controller
                 $_SESSION["userID"] = $user->id;
 
                 //forward the user to the show all todos page
-                //print_r($_SESSION);
-                header("Location: index.php?page=tasks&action=all"); //goes to the tasks page
+                // print_r($_SESSION);
+
+
+                // $data = '';
+                // self::getTemplate('login_form', $data);
+
+                header("Location: index.php?page=tasks&action=all");
             } else {
                 echo 'password does not match';
             }
@@ -144,6 +170,12 @@ class accountsController extends http\controller
 
 
 
+    }
+
+    public static function loginform()
+    {
+        $data = '';
+        self::getTemplate('login_form', $data);
     }
 
 }
