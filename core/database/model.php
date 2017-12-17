@@ -13,7 +13,7 @@ abstract class model
             echo 'failed validation';
             exit;
         }
-
+        $INSERT = FALSE;
 
         if ($this->id != '') {
             $sql = $this->update();
@@ -38,12 +38,15 @@ abstract class model
         if ($INSERT == TRUE) {
 
             $this->id = $db->lastInsertId();
+            return $this->id;
+
+        }else{
 
         }
 
 
-        return $this->id;
-        }
+
+    }
 
 
 
@@ -54,6 +57,7 @@ abstract class model
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         unset($array['id']);
+        // var_dump($array);
         $columnString = implode(',', array_flip($array));
         $valueString = ':' . implode(',:', array_flip($array));
         $sql = 'INSERT INTO ' . $tableName . ' (' . $columnString . ') VALUES (' . $valueString . ')';
@@ -74,13 +78,16 @@ abstract class model
 
         $comma = " ";
         $sql = 'UPDATE ' . $tableName . ' SET ';
+        // var_dump($array);
+        // echo empty($array['isdone']);
         foreach ($array as $key => $value) {
-            if (!empty($value)) {
+            if (strlen($value)) {
                 $sql .= $comma . $key . ' = "' . $value . '"';
                 $comma = ", ";
             }
         }
         $sql .= ' WHERE id=' . $this->id;
+        // var_dump($sql);
         return $sql;
 
     }
