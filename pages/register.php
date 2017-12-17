@@ -9,8 +9,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="pages/assets/css/style.css?v=1.0">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -27,20 +26,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Mysite</a>
+                    <a class="navbar-brand" href="#"> </a>
                 </div>
         
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav ">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="index.php">Home</a>
                         </li>
                         <li>
                             <a href="index.php?page=accounts&action=login">login</a>
@@ -65,58 +58,70 @@
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">First Name:</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="username"  name="fname" placeholder="Enter Username">
+                              <input type="text" class="form-control" id="username"  name="fname" placeholder="Enter First name" required >
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Last Name:</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="username"  name="lname" placeholder="Enter Username">
+                              <input type="text" class="form-control" id="username"  name="lname" placeholder="Enter last name" required>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Email:</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="username"  name="email" placeholder="Enter Username">
+                              <input type="email" class="form-control" id="username"  name="email" placeholder="Enter Email">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Phone:</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="username"  name="phone" placeholder="Enter Username">
+                              <input type="text" class="form-control" id="username"  name="phone" placeholder="Enter phone number" required>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Birthday:</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="username"  name="birthday" placeholder="Enter Username">
+                              <input type="date" class="form-control" id="username"  name="birthday" placeholder="Enter Username" required="">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Gender:</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="username"  name="gender" placeholder="Enter Username">
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="gender" id="inputGender" value="male" checked="checked">
+                                  Male
+                                </label>
+                                <label>
+                                  <input type="radio" name="gender" id="inputGender" value="female" >
+                                  Female
+                                </label>
+                              </div>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Password:</label>
                             <div class="col-sm-10"> 
-                              <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+                              <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" minlength="6" required>
                             </div>
                           </div>
                           <div class="form-group"> 
                             <div class="col-sm-offset-2 col-sm-10">
-                              <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group"> 
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-default">Submit</button>
+                              <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                           </div>
                         </form>
+                    </div>
+                    <div class="registration-error-box">
+                      <?php 
+                        if (isset($data)) {
+                            
+                          foreach ($data as  $error) {
+                            echo '<p class="error-text">'.$error.'</p>';
+                          }
+                        }
+                       ?>
                     </div>
                 </div>
             </div>
@@ -126,12 +131,7 @@
 
         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
-                <a class="navbar-brand" href="#">My footer</a>
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Link</a>
-                    </li>
-                </ul>
+                <a class="navbar-brand" href="#"> </a>
             </div>
         </nav>
         <!-- jQuery -->

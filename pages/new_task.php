@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home page</title>
+        <title>Register page</title>
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -26,20 +26,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> </a>
+                    <a class="navbar-brand" href="#"></a>
                 </div>
         
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="collapse navbar-collapse navbar-ex1-collapse"> 
                     <ul class="nav navbar-nav">
+                        <li>
+                            <a href="index.php?page=accounts&action=edit">My account</a>
+                        </li>
                         <li class="active">
-                            <a href="index.php">Home</a>
+                            <a href="index.php?page=tasks&action=create"  >Add New Task</a>
+                        </li>
+                        <li >
+                            <a href="index.php?page=tasks&action=all">Tasks</a>
                         </li>
                         <li>
-                            <a href="index.php?page=accounts&action=login">login</a>
-                        </li>
-                        <li>
-                            <a href="index.php?page=accounts&action=register">Register</a>
+                            <a href="index.php?page=accounts&action=logout">Logout</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -50,8 +53,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="text-center">Task Management Application</h1>
-                    <p class="text-center">Please find the usefull links in navbar</p>
+                    <div class="new-task-form">
+                        
+                        <form class="form-horizontal"  action="index.php?page=tasks&action=create" method="post">
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Message:</label>
+                            <div class="col-sm-10">
+                                <textarea name="message" id="task" class="form-control" rows="3" required="required"></textarea>
+                              
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Due Date </label>
+                            <div class="col-sm-10">
+                               <input type="date" name="duedate" id="inputDuedate" class="form-control" value="" required="required" title="">
+                              
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">isDone </label>
+                            <div class="col-sm-10">
+                               <select name="isdone" id="inputIsdone" class="form-control" required="required">
+                                   <option value="0">No</option>
+                                   <option value="1">yes</option>
+                               </select>
+                              
+                            </div>
+                          </div>
+                          <div class="form-group"> 
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
