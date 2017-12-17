@@ -6,6 +6,7 @@ final class todo extends database\model
     public $ownerid;
     public $owneremail;
     public $createddate;
+    public $updateddate;
     public $duedate;
     public $message;
     public $isdone;
@@ -17,7 +18,29 @@ final class todo extends database\model
         $tableName = 'todos';
         return $tableName;
     }
+
+
+
+    public function validate()
+    {
+
+        $valid = TRUE;
+        $validationErrors = array();
+
+        if (isset($this->message) && $this->message == '' ) {
+            $valid = FALSE;
+            $validationErrors[] = 'Please enter task message';
+        }
+
+
+
+        if($valid) {
+            return FALSE;
+        }else{
+            return $validationErrors;
+        }
+
+    }
 }
 
 ?>
-
