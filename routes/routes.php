@@ -52,6 +52,45 @@ class routes
         $route->method = 'show';
         $routes[] = $route;
 
+        //This is an examole of the post for tasks to show a task
+        //GET METHOD index.php?page=tasks&action=show
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'create';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'create';
+        $routes[] = $route;
+        //This is an examole of the post for tasks to show a task
+        //GET METHOD index.php?page=tasks&action=show
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'create';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'store';
+        $routes[] = $route;
+
+        //This is an examole of the post for tasks to show a task
+        //GET METHOD index.php?page=tasks&action=show
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'edit';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'edit';
+        $routes[] = $route;
+
+        //This is an examole of the post for tasks to show a task
+        //GET METHOD index.php?page=tasks&action=show
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'edit';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'save';
+        $routes[] = $route;
+
         //This is an examole of the post for tasks to list tasks.  See the action matches the method name.
         //you need to add routes for create, edit, and delete
         //GET METHOD index.php?page=tasks&action=all
@@ -84,7 +123,7 @@ class routes
         $routes[] = $route;
 
         //This goes in the login form action method
-        //GET METHOD index.php?page=accounts&action=login
+        //POST METHOD index.php?page=accounts&action=login
 
 
         $route = new route();
@@ -94,11 +133,39 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'login';
         $routes[] = $route;
+        //This goes in the login form action method
+        //GET METHOD index.php?page=accounts&action=login
+
+
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'login';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'loginform';
+        $routes[] = $route;
+
+        //logout
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'logout';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'logout';
+        $routes[] = $route;
 
         //YOU WILL NEED TO ADD MORE ROUTES
 
         $route = new route();
         $route->http_method = 'POST';
+        $route->action = 'delete';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'delete';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'GET';
         $route->action = 'delete';
         $route->page = 'tasks';
         $route->controller = 'tasksController';
@@ -146,29 +213,6 @@ class routes
         $route->method = 'store';
         $routes[] = $route;
 
-        $route = new route();
-        $route->http_method = 'POST';
-        $route->action = 'create';
-        $route->page = 'tasks';
-        $route->controller = 'tasksController';
-        $route->method = 'create';
-        $routes[] = $route;
-
-        $route = new route();
-        $route->http_method = 'GET';
-        $route->action = 'create';
-        $route->page = 'tasks';
-        $route->controller = 'tasksController';
-        $route->method = 'newTodoform';
-        $routes[] = $route;
-
-        $route = new route();
-        $route->http_method = 'POST';
-        $route->action = 'save';
-        $route->page = 'tasks';
-        $route->controller = 'tasksController';
-        $route->method = 'save';
-        $routes[] = $route;
 
         return $routes;
     }
