@@ -1,5 +1,33 @@
+body{
+    background: #FFCC66;
+}
+
 /* login page style */
 
 .login-form {
     margin-top: 124px;
+}
+
+/* Global navbar changes */
+
+.navbar-default {
+    background-color: #426BA3;
+    border-color: #426BA3;
+    border-radius: 0px;
+}
+.navbar-default.navbar-fixed-bottom {
+    background-color: #D97330;
+    border-color: #D97330;
+    border-radius: 0px;
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #ffcc66;
+}
+
+
+.error-text {
+    color: red;
 }
