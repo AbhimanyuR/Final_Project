@@ -1,7 +1,7 @@
 <?php
 
 namespace utility;
-//namespace MyProject\mvcName;
+
 
 class htmlTable
 {
@@ -10,12 +10,9 @@ class htmlTable
 
         $tableGen = '<table  class="table  table-hover">';
         $tableGen .= '<tr>';
-        //this grabs the first element of the array so we can extract the field headings for the table
         $fieldHeadings = $array[0];
-        // var_dump($array[0]);
         $fieldHeadings = get_object_vars($fieldHeadings);
         $fieldHeadings = array_keys($fieldHeadings);
-        //this gets the page being viewed so that the table routes requests to the correct controller
         $referingPage = $_REQUEST['page'];
         foreach ($fieldHeadings as $heading) {
             if ($heading == 'id') {
@@ -28,7 +25,7 @@ class htmlTable
             $tableGen .= '<tr>';
             foreach ($record as $key => $value) {
                 if ($key == 'id') {
-                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $value . '">View</a> <a href="index.php?page=' . $referingPage . '&action=edit&id=' . $value . '">Edit</a> <a href="index.php?page=' . $referingPage . '&action=delete&id=' . $value . '">Delete</a></td>';
+                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=edit&id=' . $value . '">Edit</a> <a href="index.php?page=' . $referingPage . '&action=delete&id=' . $value . '">Delete</a></td>';
                 } else {
                     $tableGen .= '<td>' . $value . '</td>';
                 }
